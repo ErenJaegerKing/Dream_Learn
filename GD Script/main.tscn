@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7us6yjsxeyha"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_t11xd"]
+[ext_resource type="Script" path="res://Character.gd" id="2_61ets"]
+
+[node name="Main" type="Node" node_paths=PackedStringArray("character")]
+script = ExtResource("1_t11xd")
+character = NodePath("Character")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.113725, 1, 1, 1)
+offset_left = 59.0
+offset_top = 49.0
+offset_right = 728.0
+offset_bottom = 402.0
+theme_override_font_sizes/font_size = 50
+text = "This is A Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Character" type="Node" parent="."]
+script = ExtResource("2_61ets")
+profession = "你好11111"
+health = 40
+
+[node name="Character2" type="Node" parent="."]
+script = ExtResource("2_61ets")
+profession = "你好"
+health = 40
+
+[connection signal="health_change" from="." to="." method="_on_health_change"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
