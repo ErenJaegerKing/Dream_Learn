@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 	# 在运行过程中调用acquire_target()来持续获取位置
 	acquire_target()
 	# 相机的全局变量等于 全局变量的lerp，让相机可以有平滑效果，lerp不会受到帧率影响
-	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * 10))
+	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * 20))
 	
 func acquire_target():
 	# 将设置的组的节点列表保存在player_node

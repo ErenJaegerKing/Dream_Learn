@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 # 创建一个速度常量
 const MAX_SPEED = 200
-
+# 创建一个加速度平滑常量
+const ACCELERATION_SHOOTHING = 25
 
 # 在场景运行的时候会执行的代码
 func _ready() -> void:
@@ -15,8 +16,11 @@ func _process(delta: float) -> void:
 	var movement_vector = get_movement_vector()
 	# 将二维向量归一化
 	var direction = movement_vector.normalized()
-	# 设置角色移动的向量速度
-	velocity = direction * MAX_SPEED
+	# 设置期望的目标速度
+	var target_velocity = direction * MAX_SPEED
+	# 设置角色移动的向量速度 为我们移动速度做一个线性插值
+	velocity = velocity.lerp(target_velocity,1 - exp(-delta * ACCELERATION_SHOOTHING))
+	
 	# 让角色移动起来
 	move_and_slide()
 
