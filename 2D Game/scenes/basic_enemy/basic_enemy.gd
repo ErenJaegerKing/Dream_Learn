@@ -25,3 +25,7 @@ func get_direction_to_player():
 		return (player_node.global_position - global_position).normalized()
 	#如果player_node是NULL 返回归零的二维向量
 	return Vector2.ZERO
+
+
+func on_area_entered(other_area:Area2D):
+	queue_free()
