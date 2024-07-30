@@ -6,6 +6,9 @@ const MAX_RANGE = 150
 # 定义变量sward_ability类型为PackedScene 可以在检查器中配置
 @export var sward_ability: PackedScene
 
+# 添加伤害变量
+var damage = 5
+
 func _ready() -> void:
 	# 引用节点添加timeout信号，并在信号发出后触发个事件
 	$Timer.timeout.connect(on_timer_timeout)
@@ -36,9 +39,12 @@ func on_timer_timeout():
 	
 	# 当敌人不为空的时候再创建实例
 	# 创建剑实例的变量，并强制转换为Node2D
-	var sword_instance = sward_ability.instantiate() as Node2D
+	var sword_instance = sward_ability.instantiate() as SwordAbility
 	# 将剑加入main的场景树中去
 	player.get_parent().add_child(sword_instance)
+	#通过HitBoxComponent实施伤害
+	sword_instance.hitbox_Component.damage = damage
+	
 	# 生成剑的位置在距离玩家最近的敌人位置
 	sword_instance.global_position = enemies[0].global_position
 	

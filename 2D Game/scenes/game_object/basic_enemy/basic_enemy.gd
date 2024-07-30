@@ -2,10 +2,9 @@ extends CharacterBody2D
 
 #设置最大速度
 const MAX_SPEED = 40
-@onready var health_component: HealthComponent = $HealthComponent
 
-func _ready() -> void:
-	$Area2D.area_entered.connect(on_area_entered)
+# 创建生命值组件变量
+@onready var health_component: HealthComponent = $HealthComponent
 
 
 func _process(delta: float) -> void:
@@ -26,7 +25,3 @@ func get_direction_to_player():
 		return (player_node.global_position - global_position).normalized()
 	#如果player_node是NULL 返回归零的二维向量
 	return Vector2.ZERO
-
-
-func on_area_entered(other_area:Area2D):
-	health_component.damage(100)
