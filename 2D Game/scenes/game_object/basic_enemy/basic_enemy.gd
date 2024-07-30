@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 #设置最大速度
-const MAX_SPEED = 75
+const MAX_SPEED = 40
+@onready var health_component: HealthComponent = $HealthComponent
 
 func _ready() -> void:
-	pass
+	$Area2D.area_entered.connect(on_area_entered)
 
 
 func _process(delta: float) -> void:
@@ -28,4 +29,4 @@ func get_direction_to_player():
 
 
 func on_area_entered(other_area:Area2D):
-	queue_free()
+	health_component.damage(100)
