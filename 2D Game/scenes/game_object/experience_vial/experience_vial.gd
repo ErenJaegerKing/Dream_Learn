@@ -8,6 +8,8 @@ func _ready() -> void:
 
 # 当触发信号之后执行事件
 func on_area_entered(other_area:Area2D):
+	# 发出经验值拾取的信号
+	GameEvents.emit_experience_vial_collected(1)
 	# 让经验消失
 	queue_free()
 
